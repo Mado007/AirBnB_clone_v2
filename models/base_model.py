@@ -4,16 +4,18 @@ import uuid
 from datetime import datetime
 from sqlalchemy.orm import declarative_base
 from sqlalchemy import Column, String, DATETIME
+from os import getenv
 
 Base = declarative_base()
 
 
 class BaseModel:
     """A base class for all hbnb models"""
-    id = Column(String(60), primary_key=True, nullable=False,
-                default=str(uuid.uuid4()))
-    created_at = Column(DATETIME, nullable=False, default=datetime.utcnow())
-    updated_at = Column(DATETIME, nullable=False, default=datetime.utcnow())
+    if getenv("HBNB_TYPE_STORAGE") == 'db':
+        id = Column(String(60), primary_key=True, nullable=False,
+                    default=str(uuid.uuid4()))
+        created_at = Column(DATETIME, nullable=False, default=datetime.utcnow())
+        updated_at = Column(DATETIME, nullable=False, default=datetime.utcnow())
 
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
@@ -35,6 +37,12 @@ class BaseModel:
                     setattr(self, k, date_obj)
                 else:
                     setattr(self, k, v)
+            if not hasattr(self, 'id'):
+                self.id = str(uuid.uuid4())
+            if not hasattr(self, 'created_at'):
+                self.created_at = datetime.utcnow()
+            if not hasattr(self, 'updated_at'):
+                self.updated_at = datetime.utcnow()
             if self.id is None:
                 self.id = str(uuid.uuid4())
             # kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],

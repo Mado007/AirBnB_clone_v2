@@ -1,6 +1,7 @@
 *.pyc
 *.pyo
 file.json
+main.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
