@@ -1,0 +1,57 @@
+*.pyc
+*.pyo
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+/__pycache__
+tests/__pycache__
+tests/test_models/__pycache__
+tests/test_models/test_engine/__pycache__
+models/__pycache__
+models/engine/__pycache__
+# C extensions
+*.so
+venv
+# Distribution / packaging
+bin/
+build/
+develop-eggs/
+dist/
+eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Rope
+.ropeproject
+
+# Django stuff:
+*.log
+*.pot
+
+# Sphinx documentation
+docs/_build/
