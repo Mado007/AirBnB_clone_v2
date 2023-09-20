@@ -18,7 +18,7 @@ if getenv("HBNB_TYPE_STORAGE") == "db":
         name = Column(String(128), nullable=False)
         place_amenities = relationship(
             "Place",
-            secondary="place_amenities",
+            secondary="place_amenity",
             back_populates="amenities"
             )
 else:

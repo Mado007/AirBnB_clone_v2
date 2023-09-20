@@ -11,7 +11,7 @@ from os import getenv
 
 if getenv("HBNB_TYPE_STORAGE") == "db":
     class PlaceAmenity(Base):
-        __tablename__ = "place_amenities"
+        __tablename__ = "place_amenity"
         place_id = Column(String(80),
                           ForeignKey("places.id"),
                           primary_key=True,
@@ -66,7 +66,7 @@ if getenv("HBNB_TYPE_STORAGE") == "db":
                                 backref="place",
                                 cascade="delete")
         amenities = relationship("Amenity",
-                                    secondary="place_amenities",
+                                    secondary="place_amenity",
                                     viewonly=False)
 else:
     class Place(BaseModel):
