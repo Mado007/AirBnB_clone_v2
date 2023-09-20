@@ -6,9 +6,9 @@ from sqlalchemy.orm import relationship
 from os import getenv
 import models
 
-class User(BaseModel, Base):
-    """Representation of a user """
-    if getenv("HBNB_TYPE_STORAGE") == "db":
+if getenv("HBNB_TYPE_STORAGE") == "db":
+    class User(BaseModel, Base):
+        """Representation of a user """
         __tablename__ = 'users'
 
         email = Column(String(128), nullable=False)
@@ -16,17 +16,16 @@ class User(BaseModel, Base):
         first_name = Column(String(128), nullable=True)
         last_name = Column(String(128), nullable=True)
         places = relationship("Place",
-                              backref="user",
-                              cascade="delete")
+                            backref="user",
+                            cascade="delete")
         reviews = relationship("Review",
-                               backref="user",
-                               cascade="delete")
-    else:
+                            backref="user",
+                            cascade="delete")
+else:
+    class User(BaseModel):
+        """Representation of a user """
         email = ""
         password = ""
         first_name = ""
         last_name = ""
         
-    def __init__(self, *args, **kwargs):
-        """initializes user"""
-        super().__init__(*args, **kwargs)

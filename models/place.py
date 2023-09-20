@@ -7,8 +7,9 @@ from sqlalchemy.orm import relationship
 from models.review import Review
 from models.amenity import Amenity
 import models
+from os import getenv
 
-if models.storage_type == "db":
+if getenv("HBNB_TYPE_STORAGE") == "db":
     class PlaceAmenity(Base):
         __tablename__ = "place_amenities"
         place_id = Column(String(80),
@@ -22,53 +23,67 @@ if models.storage_type == "db":
         metadata = Base.metadata
 
 
-class Place(BaseModel, Base):
-    """Representation of Place
-     Attributes:
-        city_id: city id
-        user_id: user id
-        name: name input
-        description: string of description
-        number_rooms: number of room in int
-        number_bathrooms: number of bathrooms in int
-        max_guest: maximum guest in int
-        price_by_night:: pice for a staying in int
-        latitude: latitude in flaot
-        longitude: longitude in float
-        amenity_ids: list of Amenity ids
-       """
-    if models.storage_type == "db":
+    class Place(BaseModel, Base):
+        """Representation of Place
+        Attributes:
+            city_id: city id
+            user_id: user id
+            name: name input
+            description: string of description
+            number_rooms: number of room in int
+            number_bathrooms: number of bathrooms in int
+            max_guest: maximum guest in int
+            price_by_night:: pice for a staying in int
+            latitude: latitude in flaot
+            longitude: longitude in float
+            amenity_ids: list of Amenity ids
+        """
         __tablename__ = "places"
 
         city_id = Column(String(60),
-                         ForeignKey("cities.id"))
+                            ForeignKey("cities.id"))
         user_id = Column(String(60),
-                         ForeignKey("users.id"))
+                            ForeignKey("users.id"))
         name = Column(String(128),
-                      nullable=False)
+                    nullable=False)
         description = Column(String(1024),
-                             nullable=True)
+                                nullable=True)
         number_rooms = Column(Integer,
-                              nullable=False,
-                              default=0)
-        number_bathrooms = Column(Integer,
-                                  nullable=False,
-                                  default=0)
-        max_guest = Column(Integer,
-                           nullable=False,
-                           default=0)
-        price_by_night = Column(Integer,
                                 nullable=False,
                                 default=0)
-        latitude = Column(Float)
+        number_bathrooms = Column(Integer,
+                                    nullable=False,
+                                    default=0)
+        max_guest = Column(Integer,
+                            nullable=False,
+                            default=0)
+        price_by_night = Column(Integer,
+                                    nullable=False,
+                                    default=0)
+        atitude = Column(Float)
         longitude = Column(Float)
         reviews = relationship("Review",
-                               backref="place",
-                               cascade="delete")
+                                backref="place",
+                                cascade="delete")
         amenities = relationship("Amenity",
-                                 secondary="place_amenities",
-                                 viewonly=False)
-    else:
+                                    secondary="place_amenities",
+                                    viewonly=False)
+else:
+    class Place(BaseModel):
+        """Representation of Place
+        Attributes:
+            city_id: city id
+            user_id: user id
+            name: name input
+            description: string of description
+            number_rooms: number of room in int
+            number_bathrooms: number of bathrooms in int
+            max_guest: maximum guest in int
+            price_by_night:: pice for a staying in int
+            latitude: latitude in flaot
+            longitude: longitude in float
+            amenity_ids: list of Amenity ids
+        """
         city_id = ""
         user_id = ""
         name = ""
@@ -89,6 +104,6 @@ class Place(BaseModel, Base):
             amenities = models.storage.all(Amenity)
             return list(filter((lambda c: c.place_id == self.id), amenities))
 
-    def __init__(self, *args, **kwargs):
-        """initializes Review"""
-        super().__init__(*args, **kwargs)
+        def __init__(self, *args, **kwargs):
+            """initializes Review"""
+            super().__init__(*args, **kwargs)

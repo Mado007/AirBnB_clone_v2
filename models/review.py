@@ -3,29 +3,39 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, ForeignKey
 import models
+from os import getenv
 
 
-class Review(BaseModel, Base):
-    """Representation of Review 
-    Attributes:
-        __tablename__: table name
-        place_id: place id
-        user_id: user id
-        text: review description
-    """
-    if models.storage_type == "db":
+if getenv("HBNB_TYPE_STORAGE") == "db":
+
+    class Review(BaseModel, Base):
+        """Representation of Review 
+        Attributes:
+            __tablename__: table name
+            place_id: place id
+            user_id: user id
+            text: review description
+        """
         __tablename__ = "reviews"
 
         place_id = Column(String(60),
-                          ForeignKey("places.id"))
+                            ForeignKey("places.id"))
         user_id = Column(String(60),
-                         ForeignKey("users.id"))
+                            ForeignKey("users.id"))
         text = Column(String(1024),
-                      nullable=False)
-    else:
+                        nullable=False)
+else:
+    class Review(BaseModel):
+        """Representation of Review 
+        Attributes:
+            __tablename__: table name
+            place_id: place id
+            user_id: user id
+            text: review description
+        """
         place_id = ""
         user_id = ""
         text = ""
-    def __init__(self, *args, **kwargs):
-        """initializes Review"""
-        super().__init__(*args, **kwargs)
+        def __init__(self, *args, **kwargs):
+            """initializes Review"""
+            super().__init__(*args, **kwargs)
