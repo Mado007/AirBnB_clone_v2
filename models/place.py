@@ -60,7 +60,7 @@ if getenv("HBNB_TYPE_STORAGE") == "db":
         price_by_night = Column(Integer,
                                     nullable=False,
                                     default=0)
-        atitude = Column(Float)
+        latitude = Column(Float)
         longitude = Column(Float)
         reviews = relationship("Review",
                                 backref="place",
