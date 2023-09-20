@@ -136,7 +136,13 @@ class HBNBCommand(cmd.Cmd):
         print("[Usage]: create <className>\n")
 
     def do_show(self, args):
-        """ Method to show an individual object """
+        """ Method to # The `show` method in the HBNBCommand class is used to display the details of a
+        # specific object. It takes in an argument in the format `<className>
+        # <objectId>`, where `<className>` is the name of the class and `<objectId>` is
+        # the ID of the object. It then retrieves the object from the storage and prints
+        # its details. If the class name or object ID is missing, it will print an error
+        # message.
+        show an individual object """
         new = args.partition(" ")
         c_name = new[0]
         c_id = new[2]
@@ -156,10 +162,10 @@ class HBNBCommand(cmd.Cmd):
         if not c_id:
             print("** instance id missing **")
             return
-
+        clsName = HBNBCommand.classes[c_name]
         key = c_name + "." + c_id
         try:
-            print(storage.all()[key])
+            print(storage.all(clsName)[key])
         except KeyError:
             print("** no instance found **")
 

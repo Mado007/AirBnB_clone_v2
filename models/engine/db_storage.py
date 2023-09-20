@@ -37,8 +37,7 @@ class DBStorage:
         fetched_objects = {}
         if cls is None or cls == "":
             classes = list(FileUtil.my_Classes.values())
-            temp_classes = classes[1:-2]
-            for curr in temp_classes:
+            for curr in classes:
                 if curr in [BaseModel]:
                     continue
                 records = self.__session.query(curr).all()

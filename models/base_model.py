@@ -25,7 +25,7 @@ class BaseModel:
             self.updated_at = datetime.now()
         else:
             for k, v in kwargs.items():
-                if k == '__class__':
+                if k in ['__class__', 'sa_instance_state'] :
                     continue
                 elif k == "id":
                     if v is not None:
