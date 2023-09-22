@@ -12,6 +12,7 @@ from models.review import Review
 from utils import parseArgs
 from models.__init__ import storage
 
+
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
 
@@ -135,11 +136,16 @@ class HBNBCommand(cmd.Cmd):
         print("[Usage]: create <className>\n")
 
     def do_show(self, args):
-        """ Method to # The `show` method in the HBNBCommand class is used to display the details of a
-        # specific object. It takes in an argument in the format `<className>
-        # <objectId>`, where `<className>` is the name of the class and `<objectId>` is
-        # the ID of the object. It then retrieves the object from the storage and prints
-        # its details. If the class name or object ID is missing, it will print an error
+        """ Method to # The `show` method in the HBNBCommand
+        class is used to display the details of a
+        # specific object. It takes in an argument
+        # in the format `<className>
+        # <objectId>`, where `<className>` is the
+        # name of the class and `<objectId>` is
+        # the ID of the object. It then retrieves
+        # the object from the storage and print
+        # its details. If the class name or object
+        # ID is missing, it will print an error
         # message.
         show an individual object """
         new = args.partition(" ")
