@@ -13,7 +13,7 @@ class BaseModel:
     """A base class for all hbnb models"""
     # if getenv("HBNB_TYPE_STORAGE") == 'db':
     id = Column(String(60), primary_key=True, nullable=False,
-        default=str(uuid.uuid4()))
+                default=str(uuid.uuid4()))
     created_at = Column(DATETIME, nullable=False, default=datetime.utcnow())
     updated_at = Column(DATETIME, nullable=False, default=datetime.utcnow())
 
@@ -25,7 +25,7 @@ class BaseModel:
             self.updated_at = datetime.now()
         else:
             for k, v in kwargs.items():
-                if k in ['__class__', 'sa_instance_state'] :
+                if k in ['__class__', 'sa_instance_state']:
                     continue
                 elif k == "id":
                     if v is not None:
