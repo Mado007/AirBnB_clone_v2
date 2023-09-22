@@ -10,22 +10,22 @@ import models
 from os import getenv
 
 
-if getenv("HBNB_TYPE_STORAGE") == "db":
-    class PlaceAmenity(Base):
-        """
-        place amenities table definition
-        """
-        __tablename__ = "place_amenities"
 
-        place_id = Column(String(80),
-                          ForeignKey("places.id"),
-                          primary_key=True,
-                          nullable=False)
-        amenity_id = Column(String(80),
-                            ForeignKey("amenities.id"),
-                            primary_key=True,
-                            nullable=False)
-        metadata = Base.metadata
+class PlaceAmenity(Base):
+    """
+    place amenities table definition
+    """
+    __tablename__ = "place_amenities"
+
+    place_id = Column(String(80),
+                      ForeignKey("places.id"),
+                      primary_key=True,
+                      nullable=False)
+    amenity_id = Column(String(80),
+                        ForeignKey("amenities.id"),
+                        primary_key=True,
+                        nullable=False)
+    metadata = Base.metadata
 
 
 class Place(BaseModel, Base):
