@@ -6,18 +6,16 @@ from sqlalchemy.orm import relationship
 from os import getenv
 
 
-if getenv("HBNB_TYPE_STORAGE") == 'db':
-    class State(BaseModel, Base):
-        """ State class """
-        __tablename__ = 'states'
+
+class State(BaseModel, Base):
+    """ State class """
+    __tablename__ = 'states'
+    if getenv("HBNB_TYPE_STORAGE") == 'db':
         name = Column(String(128), nullable=False)
         cities = relationship('City', backref='state',
                             cascade="all, delete, delete-orphan")
 
-
-
-elif getenv("HBNB_TYPE_STORAGE") == 'file':
-    class State(BaseModel):
+    else:
         """ State class """
         name = ""
         @property

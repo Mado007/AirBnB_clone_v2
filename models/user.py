@@ -6,26 +6,24 @@ from sqlalchemy.orm import relationship
 from os import getenv
 import models
 
-if getenv("HBNB_TYPE_STORAGE") == "db":
-    class User(BaseModel, Base):
-        """Representation of a user """
-        __tablename__ = 'users'
 
+class User(BaseModel, Base):
+    """Representation of a user """
+    __tablename__ = 'users'
+    if getenv("HBNB_TYPE_STORAGE") == "db":
         email = Column(String(128), nullable=False)
         password = Column(String(128), nullable=False)
         first_name = Column(String(128), nullable=True)
         last_name = Column(String(128), nullable=True)
         places = relationship("Place",
-                            backref="user",
-                            cascade="delete")
+        backref="user",
+        cascade="delete")
         reviews = relationship("Review",
-                            backref="user",
-                            cascade="delete")
-else:
-    class User(BaseModel):
+        backref="user",
+        cascade="delete")
+    else:
         """Representation of a user """
         email = ""
         password = ""
         first_name = ""
         last_name = ""
-        

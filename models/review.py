@@ -6,36 +6,30 @@ import models
 from os import getenv
 
 
-if getenv("HBNB_TYPE_STORAGE") == "db":
 
-    class Review(BaseModel, Base):
-        """Representation of Review 
-        Attributes:
-            __tablename__: table name
-            place_id: place id
-            user_id: user id
-            text: review description
-        """
-        __tablename__ = "reviews"
+
+class Review(BaseModel, Base):
+    """Representation of Review 
+    Attributes:
+    __tablename__: table name
+    place_id: place id
+    user_id: user id
+    text: review description
+    """
+    __tablename__ = "reviews"
+    if getenv("HBNB_TYPE_STORAGE") == "db":
 
         place_id = Column(String(60),
-                            ForeignKey("places.id"))
+        ForeignKey("places.id"))
         user_id = Column(String(60),
-                            ForeignKey("users.id"))
+        ForeignKey("users.id"))
         text = Column(String(1024),
-                        nullable=False)
-else:
-    class Review(BaseModel):
-        """Representation of Review 
-        Attributes:
-            __tablename__: table name
-            place_id: place id
-            user_id: user id
-            text: review description
-        """
+        nullable=False)
+    else:
+
         place_id = ""
         user_id = ""
         text = ""
-        def __init__(self, *args, **kwargs):
-            """initializes Review"""
-            super().__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
+        """initializes Review"""
+        super().__init__(*args, **kwargs)
