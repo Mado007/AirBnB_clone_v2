@@ -19,4 +19,6 @@ def do_pack():
             return None
     if local("tar -cvzf {} web_static".format(file)).failed is True:
         return None
+    print(f'web_static packed: {file} -> \
+{os.path.getsize(filename=file)}Bytes')
     return file

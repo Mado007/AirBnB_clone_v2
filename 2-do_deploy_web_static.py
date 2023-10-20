@@ -18,7 +18,10 @@ def do_pack():
     path = "versions/web_static_{}.tgz".format(formatted_dt)
     print("Packing web_static to {}".format(path))
     if local("{} && tar -cvzf {} web_static".format(mkdir, path)).succeeded:
+        print(f'web_static packed: {path} -> \
+{os.path.getsize(filename=path)}Bytes')
         return path
+
     return None
 
 

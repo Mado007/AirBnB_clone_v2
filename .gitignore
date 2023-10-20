@@ -14,6 +14,7 @@ models/engine/__pycache__
 # C extensions
 *.so
 venv
+versions
 # Distribution / packaging
 bin/
 build/
