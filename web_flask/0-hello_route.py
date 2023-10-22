@@ -4,6 +4,7 @@
 
 from web_flask import app
 
+
 @app.route("/")
 def index():
     """index page for my application
