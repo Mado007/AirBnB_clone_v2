@@ -1,6 +1,7 @@
 *.pyc
 *.pyo
 file.json
+
 main.py
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -14,6 +15,7 @@ models/engine/__pycache__
 # C extensions
 *.so
 venv
+.venv
 versions
 # Distribution / packaging
 bin/
@@ -59,3 +61,5 @@ delete_tabes.sh
 
 # Sphinx documentation
 docs/_build/
+/.venv/
+/fab.sh
