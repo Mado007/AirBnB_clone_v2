@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 """nodule documentation for 0-routing in"""
 
-from flask import Flask
-app = Flask(__name__)
-app.url_map.strict_slashes = False
 
+from web_flask import app
 
 @app.route("/")
 def index():
@@ -19,4 +17,4 @@ def index():
 if __name__ == '__main__':
     """to prevent from running when imported
     """
-    app.run()
+    app.run(host='0.0.0.0', port=5000)
