@@ -33,6 +33,7 @@ def c_variable(text):
     """
     return f"C {text.replace('_', ' ')}"
 
+
 @app.route('/python', defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
 def python_variable(text):
@@ -41,7 +42,7 @@ def python_variable(text):
     Returns:
         string: to be viewed on browser
     """
-    return f"python {text.replace('_', ' ')}"
+    return f"Python {text.replace('_', ' ')}"
 
 
 if __name__ == '__main__':
