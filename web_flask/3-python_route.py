@@ -33,9 +33,9 @@ def c_variable(text):
     """
     return f"C {text.replace('_', ' ')}"
 
-
+@app.route('/python', defaults={'text': 'is cool'}, strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
-def python_variable(text='is cool'):
+def python_variable(text):
     """/python/<text> page for my application
 
     Returns:
