@@ -8,8 +8,15 @@ app.url_map.strict_slashes = False
 
 @app.route("/")
 def index():
+    """index page for my application
+
+    Returns:
+        _type_: string to be viewed on browser
+    """
     return 'Hello HBNB!'
 
 
 if __name__ == '__main__':
+    """to prevent from running when imported
+    """
     app.run()
