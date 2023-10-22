@@ -9,7 +9,7 @@ def hello_hbnb():
     """index page for my application
 
     Returns:
-        _type_: string to be viewed on browser
+        string: to be viewed on browser
     """
     return 'Hello HBNB!'
 
