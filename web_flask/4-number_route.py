@@ -45,7 +45,6 @@ def python_variable(text):
     return f"Python {text.replace('_', ' ')}"
 
 
-
 @app.route('/number/<int:n>', strict_slashes=False)
 def number_variable(n):
     """/number/<n> page for my application
