@@ -18,4 +18,5 @@ sudo apt-get install zlib1g-dev
 sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
 sudo apt-get install pkg-config libmysqlclient-dev
 pip3 install mysqlclient
-pip3 install sqlalchemy
+pip install sqlalchemy==1.4.22
+pip install Flask
