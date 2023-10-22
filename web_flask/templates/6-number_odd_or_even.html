@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<HTML lang="en">
-    <HEAD>
-        <TITLE>HBNB</TITLE>
-    </HEAD>
-    <BODY>
-        <H1>Number: {{ n }} is {{ evenness }}</H1>
-    </BODY>
-</HTML>
+<html>
+    <head>
+        <title>HBNB</title>
+    </head>
+    <body>
+        {% if n % 2 == 0 %}
+        <H1>{{ n }} is even</H1>
+        {% else %}
+        <H1>{{ n }} is odd</H1>
+        {% endif %}
+    </body>
+</html>
