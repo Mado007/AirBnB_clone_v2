@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-"""nodule documentation for 0-routing in"""
+""" Starts a Flash Web Application """
+from flask import Flask
+app = Flask(__name__)
 
 
-from web_flask import app
-
-
-@app.route("/", strict_slashes=False)
-def index():
+@app.route('/', strict_slashes=False)
+def hello_hbnb():
     """index page for my application
 
     Returns:
