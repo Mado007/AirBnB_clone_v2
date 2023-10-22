@@ -64,3 +64,7 @@ docs/_build/
 /.venv/
 /fab.sh
 /.idea/
+W3C-Validator
+/web_flask/templates/W3C-Validator
+/web_flask/templates/w3c-Validator.py
+/root/alx/AirBnB_clone_v2/web_flask/templates/w3c_validator.py
