@@ -1,82 +1,82 @@
 #!/usr/bin/python3
-""" Starts a Flash Web Application """
-from flask import Flask, render_template, url_for
+"""Starts a Flask web application.
+
+The application listens on 0.0.0.0, port 5000.
+Routes:
+    /: Displays 'Hello HBNB!'.
+    /hbnb: Displays 'HBNB'.
+    /c/<text>: Displays 'C' followed by the value of <text>.
+    /python/(<text>): Displays 'Python' followed by the value of <text>.
+    /number/<n>: Displays 'n is a number' only if <n> is an integer.
+    /number_template/<n>: Displays an HTML page only if <n> is an integer.
+        - Displays the value of <n> in the body.
+    /number_odd_or_even/<n>: Displays an HTML page only if <n> is an integer.
+        - States whether <n> is even or odd in the body.
+"""
+from flask import Flask
+from flask import render_template
+
 app = Flask(__name__)
+app.jinja_env.trim_blocks = True
+app.jinja_env.lstrip_blocks = True
 
 
-@app.route('/', strict_slashes=False)
+@app.route("/", strict_slashes=False)
 def hello_hbnb():
-    """index page for my application
-
-    Returns:
-        string: to be viewed on browser
-    """
-    return 'Hello HBNB!'
+    """Displays 'Hello HBNB!'"""
+    return "Hello HBNB!"
 
 
-@app.route('/hbnb', strict_slashes=False)
+@app.route("/hbnb", strict_slashes=False)
 def hbnb():
-    """hbnb page for my application
+    """Displays 'HBNB'"""
+    return "HBNB"
 
-    Returns:
-        string: to be viewed on browser
+
+@app.route("/c/<text>", strict_slashes=False)
+def c(text):
+    """Displays 'C' followed by the value of <text>
+
+    Replaces any underscores in <text> with slashes.
     """
-    return 'HBNB'
+    text = text.replace("_", " ")
+    return "C {}".format(text)
 
 
-@app.route('/c/<text>', strict_slashes=False)
-def c_variable(text):
-    """/c/<text> page for my application
+@app.route("/python", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def python(text="is cool"):
+    """Displays 'Python' followed by the value of <text>
 
-    Returns:
-        string: to be viewed on browser
+    Replaces any underscores in <text> with slashes.
     """
-    return f"C {text.replace('_', ' ')}"
+    text = text.replace("_", " ")
+    return "Python {}".format(text)
 
 
-@app.route('/python', defaults={'text': 'is cool'}, strict_slashes=False)
-@app.route('/python/<text>', strict_slashes=False)
-def python_variable(text):
-    """/python/<text> page for my application
+@app.route("/number/<int:n>", strict_slashes=False)
+def number(n):
+    """Displays 'n is a number' only if <n> is an integer."""
+    return "{} is a number".format(n)
 
-    Returns:
-        string: to be viewed on browser
+
+@app.route("/number_template/<int:n>", strict_slashes=False)
+def number_template(n):
+    """Displays an HTML page only if <n> is an integer.
+
+    Displays the value of <n> in the body.
     """
-    return f"Python {text.replace('_', ' ')}"
+    return render_template("5-number.html", n=n)
 
 
-@app.route('/number/<int:n>', strict_slashes=False)
-def number_variable(n):
-    """/number/<n> page for my application
+@app.route("/number_odd_or_even/<int:n>", strict_slashes=False)
+def number_odd_or_even(n):
+    """Displays an HTML page only if <n> is an integer.
 
-    Returns:
-        string: to be viewed on browser
+    States whether <n> is odd or even in the body.
     """
-    return f"{n} is a number"
+    return render_template("6-number_odd_or_even.html", n=n)
 
 
-@app.route('/number_template/<int:n>', strict_slashes=False)
-def number_variable_template(n):
-    """number_variable_template page for my application
-
-    Returns:
-        template: to be viewed on browser
-    """
-    return render_template('5-number.html', n=n)
-
-
-@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
-def number_odd_even_template(n):
-    """number_odd_even_template page for my application
-
-    Returns:
-        template: to be viewed on browser
-    """
-    return render_template('6-number_odd_or_even.html', n=n)
-
-
-if __name__ == '__main__':
-    """to prevent from running when imported
-    """
-    app.url_map.strict_slashes = False
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")

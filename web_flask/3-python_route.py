@@ -1,52 +1,50 @@
 #!/usr/bin/python3
-""" Starts a Flash Web Application """
+"""Starts a Flask web application.
+
+The application listens on 0.0.0.0, port 5000.
+Routes:
+    /: Displays 'Hello HBNB!'.
+    /hbnb: Displays 'HBNB'.
+    /c/<text>: Displays 'C' followed by the value of <text>.
+    /python/(<text>): Displays 'Python' followed by the value of <text>.
+"""
 from flask import Flask
+
 app = Flask(__name__)
 
 
-@app.route('/', strict_slashes=False)
+@app.route("/", strict_slashes=False)
 def hello_hbnb():
-    """index page for my application
-
-    Returns:
-        string: to be viewed on browser
-    """
-    return 'Hello HBNB!'
+    """Displays 'Hello HBNB!'."""
+    return "Hello HBNB!"
 
 
-@app.route('/hbnb', strict_slashes=False)
+@app.route("/hbnb", strict_slashes=False)
 def hbnb():
-    """hbnb page for my application
+    """Displays 'HBNB'."""
+    return "HBNB"
 
-    Returns:
-        string: to be viewed on browser
+
+@app.route("/c/<text>", strict_slashes=False)
+def c(text):
+    """Displays 'C' followed by the value of <text>.
+
+    Replaces any underscores in <text> with slashes.
     """
-    return 'HBNB'
+    text = text.replace("_", " ")
+    return "C {}".format(text)
 
 
-@app.route('/c/<text>', strict_slashes=False)
-def c_variable(text):
-    """/c/<text> page for my application
+@app.route("/python", strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def python(text="is cool"):
+    """Displays 'Python' followed by the value of <text>.
 
-    Returns:
-        string: to be viewed on browser
+    Replaces any underscores in <text> with slashes.
     """
-    return f"C {text.replace('_', ' ')}"
+    text = text.replace("_", " ")
+    return "Python {}".format(text)
 
 
-@app.route('/python', defaults={'text': 'is cool'}, strict_slashes=False)
-@app.route('/python/<text>', strict_slashes=False)
-def python_variable(text):
-    """/python/<text> page for my application
-
-    Returns:
-        string: to be viewed on browser
-    """
-    return f"Python {text.replace('_', ' ')}"
-
-
-if __name__ == '__main__':
-    """to prevent from running when imported
-    """
-    app.url_map.strict_slashes = False
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")
