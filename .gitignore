@@ -63,3 +63,4 @@ delete_tabes.sh
 docs/_build/
 /.venv/
 /fab.sh
+/.idea/

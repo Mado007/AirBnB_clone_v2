@@ -12,3 +12,10 @@ pip3 install cryptography==2.8
 pip3 install bcrypt==3.1.7
 pip3 install PyNaCl==1.3.0
 pip3 install Fabric3==1.14.post1
+sudo apt-get install python3-dev
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install zlib1g-dev
+sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
+sudo apt-get install pkg-config libmysqlclient-dev
+pip3 install mysqlclient
+pip3 install sqlalchemy
