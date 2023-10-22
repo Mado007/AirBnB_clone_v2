@@ -16,7 +16,7 @@ def hello_hbnb():
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """index page for my application
+    """hbnb page for my application
 
     Returns:
         string: to be viewed on browser
